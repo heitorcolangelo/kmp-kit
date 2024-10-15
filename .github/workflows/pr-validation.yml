@@ -28,6 +28,7 @@ jobs:
       - uses: actions/setup-java@v4.4.0
         with:
           distribution: jdk
+          java-version: 17
       
       - name: Builds the project
         run: ./gradlew assemble

@@ -26,6 +26,8 @@ jobs:
       - uses: actions/checkout@v4
       # Setup Java JDK
       - uses: actions/setup-java@v4.4.0
+        with:
+          distribution: jdk
       
       - name: Builds the project
         run: ./gradlew assemble

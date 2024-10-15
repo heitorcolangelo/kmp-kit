@@ -27,7 +27,7 @@ jobs:
       # Setup Java JDK
       - uses: actions/setup-java@v4.4.0
         with:
-          distribution: jdk
+          distribution: zulu
           java-version: 17
       
       - name: Builds the project

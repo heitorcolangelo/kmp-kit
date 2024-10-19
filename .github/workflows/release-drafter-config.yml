@@ -1,4 +1,5 @@
-name-template: 'v$RESOLVED_VERSION 🌈'
+#file: noinspection YAMLSchemaValidation
+name-template: 'v$RESOLVED_VERSION 🚀'
 tag-template: 'v$RESOLVED_VERSION'
 categories:
   - title: '🚀 Features'

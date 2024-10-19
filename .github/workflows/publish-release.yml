@@ -20,7 +20,7 @@ jobs:
 
       - name: Publish artifact
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PUBLISHING_TOKEN: ${{ secrets.PUBLISHING_TOKEN }}
 
         # GITHUB_REF tag comes in the format 'refs/tags/xxx'.
         # Split on '/' and take the 3rd value to get the release name.

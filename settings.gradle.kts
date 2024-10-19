@@ -14,5 +14,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "KMPKit"
+rootProject.name = "kmp-kit"
 include(":core")

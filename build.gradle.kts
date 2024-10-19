@@ -17,7 +17,7 @@ subprojects {
                 url = uri("https://maven.pkg.github.com/heitorcolangelo/kmp-kit")
                 credentials {
                     username = System.getenv("GITHUB_ACTOR")
-                    password = System.getenv("GITHUB_TOKEN")
+                    password = System.getenv("PUBLISHING_TOKEN")
                 }
             }
         }

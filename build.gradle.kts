@@ -13,7 +13,7 @@ subprojects {
     configure<PublishingExtension> {
         repositories {
             maven {
-                name = "KMPKit"
+                name = "GitHubPackages"
                 url = uri("https://maven.pkg.github.com/heitorcolangelo/KMPKit")
                 credentials {
                     username = System.getenv("GITHUB_ACTOR")

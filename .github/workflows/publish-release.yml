@@ -25,6 +25,9 @@ jobs:
         # GITHUB_REF tag comes in the format 'refs/tags/xxx'.
         # Split on '/' and take the 3rd value to get the release name.
         run: |
+          echo "Generating BOM"
+          ./gradlew cyclonedxBom
+          
           NEW_VERSION=$(echo "${GITHUB_REF}" | cut -d "/" -f3)
           echo "New version: ${NEW_VERSION}"
           echo "Github username: ${GITHUB_ACTOR}"

@@ -1,16 +1,32 @@
+import org.cyclonedx.gradle.CycloneDxTask
+
 plugins {
     //trick: for the same plugin versions in all sub-modules
     alias(libs.plugins.androidLibrary).apply(false)
     alias(libs.plugins.kotlinMultiplatform).apply(false)
     `maven-publish`
+    alias(libs.plugins.cyclonedx).apply(false)
 }
 
 subprojects {
     apply(plugin = "maven-publish")
+    apply(plugin = "org.cyclonedx.bom")
 
+    group = "com.kmpkit"
     version = this.property("version") as String? ?: "0.0.0"
 
     configure<PublishingExtension> {
+        publications {
+            afterEvaluate {
+                publications.withType<MavenPublication> {
+                    artifact(file("${layout.buildDirectory.asFile.orNull}/reports/bom.json")) {
+                        classifier = "sbom"
+                        extension = "json"
+                    }
+                }
+            }
+        }
+
         repositories {
             maven {
                 name = "GitHubPackages"
@@ -22,4 +38,11 @@ subprojects {
             }
         }
     }
+
+    tasks.withType<CycloneDxTask>().configureEach {
+        includeConfigs = listOf("runtimeClasspath", "iosArm64CompileKlibraries")
+
+        skipConfigs.set(listOf("compileClasspath", "testCompileClasspath", "testRuntimeClasspath"))
+    }
+
 }

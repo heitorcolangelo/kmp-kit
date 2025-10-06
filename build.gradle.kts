@@ -1,4 +1,4 @@
-import org.cyclonedx.gradle.CycloneDxTask
+import org.cyclonedx.gradle.CyclonedxDirectTask
 
 plugins {
     //trick: for the same plugin versions in all sub-modules
@@ -19,7 +19,7 @@ subprojects {
         publications {
             afterEvaluate {
                 publications.withType<MavenPublication> {
-                    artifact(file("${layout.buildDirectory.asFile.orNull}/reports/bom.json")) {
+                    artifact(file("${layout.buildDirectory.asFile.orNull}/reports/cyclonedx/bom.json")) {
                         classifier = "sbom"
                         extension = "json"
                     }
@@ -39,7 +39,7 @@ subprojects {
         }
     }
 
-    tasks.withType<CycloneDxTask>().configureEach {
+    tasks.withType<CyclonedxDirectTask>().configureEach {
         includeConfigs = listOf("runtimeClasspath", "iosArm64CompileKlibraries")
 
         skipConfigs.set(listOf("compileClasspath", "testCompileClasspath", "testRuntimeClasspath"))

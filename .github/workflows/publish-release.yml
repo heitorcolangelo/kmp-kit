@@ -29,7 +29,7 @@ jobs:
           cosign sign-blob \
             --output-signature build/reports/cyclonedx/bom.json.sig \
             --yes \
-            build/reports/cyclonedx/bom.json
+            core/build/reports/cyclonedx/bom.json
 
       - name: Publish artifact
         env:

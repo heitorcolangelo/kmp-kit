@@ -18,13 +18,16 @@ jobs:
           java-version: '21'
           cache: 'gradle'
 
+      - name: Install Cosign
+        uses: sigstore/cosign-installer@v3
+
       - name: Generate SBOM
         run: ./gradlew cyclonedxBom
 
-      - name: Sign SBOM artifacts
-        uses: sigstore/gh-action-sigstore-python@v3.0.0
-        with:
-          input: core/build/reports/cyclonedx/bom.json
+      - name: Sign SBOM (keyless)
+        run: |
+          cosign sign-blob core/build/reports/cyclonedx/bom.json \
+            --bundle core/build/reports/cyclonedx/bom.json.bundle    
 
       - name: Publish artifact
         env:

@@ -9,6 +9,8 @@ on:
 jobs:
   publish-release:
     runs-on: macos-latest
+    permissions:
+      id-token: write # Require to sign SBOM
     steps:
       - uses: actions/checkout@v4
 
@@ -26,7 +28,9 @@ jobs:
 
       - name: Sign SBOM (keyless)
         run: |
-          cosign sign-blob core/build/reports/cyclonedx/bom.json \
+          cosign sign-blob \
+            --yes \
+            core/build/reports/cyclonedx/bom.json \
             --bundle core/build/reports/cyclonedx/bom.json.bundle    
 
       - name: Publish artifact

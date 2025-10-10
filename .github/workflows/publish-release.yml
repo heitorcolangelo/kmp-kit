@@ -26,10 +26,8 @@ jobs:
 
       - name: Sign SBOM (keyless)
         run: |
-          cosign sign-blob \
-            --output-signature build/reports/cyclonedx/bom.json.sig \
-            --yes \
-            core/build/reports/cyclonedx/bom.json
+          cosign sign-blob core/build/reports/cyclonedx/bom.json \
+            --bundle core/build/reports/cyclonedx/bom.json.bundle    
 
       - name: Publish artifact
         env:

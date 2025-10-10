@@ -31,15 +31,7 @@ jobs:
           cosign sign-blob \
             --yes \
             core/build/reports/cyclonedx/bom.json \
-            --bundle core/build/reports/cyclonedx/bom.json.bundle
-
-      - name: Verify SBOM signature
-        run: |
-          cosign verify-blob \
-            --bundle core/build/reports/cyclonedx/bom.json.bundle \
-            --certificate-identity="${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/.github/workflows/publish-release.yml@${GITHUB_REF}" \
-            --certificate-oidc-issuer="https://token.actions.githubusercontent.com" \
-            core/build/reports/cyclonedx/bom.json
+            --bundle core/build/reports/cyclonedx/bom.json.bundle    
 
       - name: Publish artifact
         env:

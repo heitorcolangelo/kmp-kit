@@ -19,9 +19,18 @@ subprojects {
         publications {
             afterEvaluate {
                 publications.withType<MavenPublication> {
-                    artifact(file("${layout.buildDirectory.asFile.orNull}/reports/cyclonedx/bom.json")) {
+                    val buildDirPath = layout.buildDirectory.asFile.orNull
+
+                    val sbomJson = file("$buildDirPath/reports/cyclonedx/bom.json")
+                    artifact(sbomJson) {
                         classifier = "sbom"
                         extension = "json"
+                    }
+
+                    val sbomBundle = file("$buildDirPath/reports/cyclonedx/bom.json.bundle")
+                    artifact(sbomBundle) {
+                        classifier = "sbom"
+                        extension = "bundle"
                     }
                 }
             }

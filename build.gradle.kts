@@ -2,7 +2,7 @@ import org.cyclonedx.gradle.CyclonedxDirectTask
 
 plugins {
     //trick: for the same plugin versions in all sub-modules
-    alias(libs.plugins.androidLibrary).apply(false)
+    alias(libs.plugins.androidKotlinMultiplatformLibrary).apply(false)
     alias(libs.plugins.kotlinMultiplatform).apply(false)
     `maven-publish`
     alias(libs.plugins.cyclonedx).apply(false)

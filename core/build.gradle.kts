@@ -5,7 +5,7 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
-    alias(libs.plugins.androidLibrary)
+    alias(libs.plugins.androidKotlinMultiplatformLibrary)
 }
 
 kotlin {
@@ -13,8 +13,10 @@ kotlin {
         apiVersion.set(org.jetbrains.kotlin.gradle.dsl.KotlinVersion.KOTLIN_2_0)
     }
 
-    androidTarget {
-        publishLibraryVariants("release")
+    android {
+        namespace = "com.kmpkit"
+        compileSdk = 36
+        minSdk = 24
         compilerOptions {
             jvmTarget.set(JvmTarget.JVM_1_8)
         }
@@ -31,13 +33,5 @@ kotlin {
         commonTest.dependencies {
             implementation(libs.kotlin.test)
         }
-    }
-}
-
-android {
-    namespace = "com.kmpkit"
-    compileSdk = 34
-    defaultConfig {
-        minSdk = 24
     }
 }

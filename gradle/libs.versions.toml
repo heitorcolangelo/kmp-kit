@@ -1,6 +1,6 @@
 [versions]
 agp = "9.1.0"
-cyclonedx = "3.2.3"
+cyclonedx = "3.2.4"
 kotlin = "2.3.20"
 
 [libraries]

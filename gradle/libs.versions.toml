@@ -1,7 +1,7 @@
 [versions]
 agp = "9.2.1"
 cyclonedx = "3.2.4"
-kotlin = "2.3.21"
+kotlin = "2.4.0"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
